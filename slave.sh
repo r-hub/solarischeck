@@ -11,7 +11,7 @@ main() {
     # Set up environment variables, check arguments
     source rhub-env.sh
 
-    export PATH=/opt/csw/bin:$PATH:/opt/R/R-3.4.1-patched-gcc/bin
+    export PATH=/opt/csw/bin:/usr/xpg4/bin:$PATH:/opt/R/R-3.4.1-patched-gcc/bin
 
     # Set R temporary directory
     mkdir $HOME/Rtemp
