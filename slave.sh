@@ -60,10 +60,7 @@ setup_r_environment() {
 }
 
 install_package_deps() {
-    # We download install-github.R first, in case the R version does not
-    # support HTTPS. Then we install the proper 'remotes' package
-    curl -OL https://raw.githubusercontent.com/r-pkgs/remotes/r-hub/install-github.R
-    R -q -e 'source("install-github.R")$value("r-pkgs/remotes@r-hub")'
+    R -q -e 'source("https://install-github.me/r-lib/remotes@r-hub")'
     R -q -e "remotes::install_local('${filename}', dependencies = TRUE, INSTALL_opts = '--build')"
 }
 
