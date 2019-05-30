@@ -50,9 +50,9 @@ setup_r_environment() {
     echo >> .Rprofile '.libPaths("~/R")'
 
     # BioC
-    R -q -e "source('https://bioconductor.org/biocLite.R')"
-    echo >> .Rprofile 'options(repos = BiocInstaller::biocinstallRepos())'
-    echo >> .Rprofile 'unloadNamespace("BiocInstaller")'
+    R -q -e "install.packages('BiocManager')"
+    echo >> .Rprofile 'options(repos = BiocManager::repositories())'
+    echo >> .Rprofile 'unloadNamespace("BiocManager")'
 
     # Better tar, make
     export TAR=/opt/csw/bin/gtar
