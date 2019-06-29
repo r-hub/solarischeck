@@ -22,6 +22,7 @@ main() {
 
     export PATH=/usr/local/bin:/opt/csw/bin:/usr/xpg4/bin:$PATH:/opt/R/R-3.5.0-patched/bin
     export CURL_CA_BUNDLE=/etc/cacert.pem
+    export PKG_CONFIG_PATH=/opt/csw/lib/pkgconfig
 
     # Set R temporary directory
     mkdir $HOME/Rtemp
