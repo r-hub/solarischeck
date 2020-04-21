@@ -1,0 +1,10 @@
+CC="/opt/csw/bin/gcc"
+CFLAGS=-O2
+CPPFLAGS="-I/opt/csw/include"
+FC="/opt/csw/bin/gfortran"
+FFLAGS=-O2
+CXX="/opt/csw/bin/g++"
+CXXFLAGS=-O2
+LDFLAGS="-L/opt/csw/lib"
+R_LD_LIBRARY_PATH="/opt/csw/lib:/usr/openwin/lib:/usr/sfw/lib"
+CURL_CONFIG="/opt/csw/bin/curl-config"
