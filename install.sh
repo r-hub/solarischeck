@@ -36,6 +36,7 @@ function install_tex() {
 	 texlive_fonts_recommended \
 	 texlive_latex_base \
 	 texlive_latex_base_binaries \
+	 texlive_latex_extra \
 	 texlive_latex_extra_binaries
 }
 
