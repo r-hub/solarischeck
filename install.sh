@@ -41,6 +41,10 @@ function install_tex() {
 	 texlive_latex_extra_binaries
 }
 
+function install_r_hub_client() {
+    curl -O -C - https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/2.2/swarm-client-2.2-jar-with-dependencies.jar
+}
+
 function main() {
     install_r_opencsw
     install_sysreqs
