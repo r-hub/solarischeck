@@ -67,12 +67,14 @@ install_package_deps() {
 setup_xvfb() {
     # Random display between 1 and 100
     export DISPLAY=":$(($RANDOM / 331 + 1))"
-    /usr/openwin/bin/Xvfb "${DISPLAY}" -dev vfb screen 1024x768x24 &
+    /usr/X11R6/bin/Xvfb "${DISPLAY}" &
 }
 
 cleanup_xvfb() {
-    kill -9 $(ps -ef | grep 'Xsun.*dev vfb' | grep -v grep |
-		     awk '{ print $2; }') || true
+    if [ -n "$DISPLAY" ]; then
+	kill -9 $(ps -ef | grep "Xvfb $DISPLAY" | grep -v grep |
+			 awk '{ print $2; }') || true
+    fi
 }
 
 run_check() {
