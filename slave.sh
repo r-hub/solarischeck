@@ -20,7 +20,6 @@ main() {
     source rhub-env.sh
     export rhubdummy $(cut -f1 -d= < rhub-env.sh)
 
-    export PATH=/usr/local/bin:/opt/csw/bin:/usr/xpg4/bin:/usr/ccs/bin:$PATH:/opt/R/R-3.6.3-patched/bin
     export CURL_CA_BUNDLE=/etc/cacert.pem
     export PKG_CONFIG_PATH=/opt/csw/lib/pkgconfig
 
