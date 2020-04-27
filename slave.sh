@@ -20,7 +20,7 @@ main() {
     source rhub-env.sh
     export rhubdummy $(cut -f1 -d= < rhub-env.sh)
 
-    export CURL_CA_BUNDLE=/etc/cacert.pem
+    export PATH=/opt/csw/sbin:/opt/csw/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/sfw/bin:/usr/sfw/sbin:/usr/ccs/bin
     export PKG_CONFIG_PATH=/opt/csw/lib/pkgconfig
 
     # Set R temporary directory
