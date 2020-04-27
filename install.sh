@@ -16,6 +16,7 @@ fi
 function install_r_opencsw() {
     echo "== INSTALLING R ==================================="
     sudo pkgutil -y -i libreadline7
+    sudo pkgutil -y -i curl
     sudo pkgutil -t https://files.r-hub.io/opencsw -y -i r_base
 }
 
