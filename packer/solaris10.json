@@ -1,0 +1,128 @@
+{
+  "variables": {
+    "iso_location": "/Users/gaborcsardi/Downloads",
+    "ods_location": "/Users/gaborcsardi/Downloads",
+    "harddisk_size": "40960",
+    "vm_name": "solaris10"
+  },
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "{{user `ods_location`}}/OracleDeveloperStudio12.6-solaris-x86-pkg.tar.bz2",
+      "destination": "/export/home/vagrant/OracleDeveloperStudio12.6-solaris-x86-pkg.tar.bz2"
+    },
+    {
+      "type": "file",
+      "source": "Rlogo.png",
+      "destination": "/export/home/vagrant/Rlogo.png"
+    },
+    {
+      "execute_command": "chmod +x {{ .Path }}; export {{.Vars}} && cat {{.Path}} | pfexec su ",
+      "type": "shell",
+      "scripts": [
+        "scripts/solaris/postinstall.sh",
+        "scripts/solaris/ods.sh",
+        "scripts/solaris/r.sh",
+        "scripts/solaris/rhubsetup.sh",
+        "scripts/solaris/cleanup.sh"
+      ]
+    }
+  ],
+  "post-processors": [{
+    "compression_level": 9,
+    "output": "build/{{user `vm_name`}}-x86_64.box",
+    "type": "vagrant",
+    "only": ["virtualbox-iso"]
+  },
+  {
+    "compression_level": 9,
+    "output": "build/{{user `vm_name`}}-x86_64-{{.Provider}}.box",
+    "type": "vagrant",
+    "only": ["vmware-iso"]
+  }],
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "e<wait>",
+        "e<wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><wait>",
+        "- nowin install -B install_media=cdrom<enter><wait>",
+        "b<wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "{{user `harddisk_size`}}",
+      "floppy_files": [
+        "floppy/sysidcfg",
+        "floppy/rules",
+        "floppy/rules.ok",
+        "floppy/begin",
+        "floppy/profile",
+        "floppy/finish"
+      ],
+      "guest_os_type": "Solaris_64",
+      "iso_checksum": "c27e5fe2531826192f110e2d9f1f5d73015edac6",
+      "iso_checksum_type": "sha1",
+      "iso_url": "{{user `iso_location`}}/sol-10-u11-ga-x86-dvd.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/usr/sbin/poweroff' > shutdown.sh; pfexec bash -l shutdown.sh",
+      "output_directory": "packer-solaris10-virtualbox",
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "packer-solaris-10",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "4096"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    },
+    {
+      "type": "vmware-iso",
+      "boot_command": [
+        "e<wait>",
+        "e<wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><wait>",
+        "- nowin install -B install_media=cdrom<enter><wait>",
+        "b<wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "{{user `harddisk_size`}}",
+      "floppy_files": [
+        "floppy/sysidcfg",
+        "floppy/rules",
+        "floppy/rules.ok",
+        "floppy/begin",
+        "floppy/profile",
+        "floppy/finish"
+      ],
+      "guest_os_type": "solaris10-64",
+      "iso_checksum": "c27e5fe2531826192f110e2d9f1f5d73015edac6",
+      "iso_checksum_type": "sha1",
+      "iso_url": "{{user `iso_location`}}/sol-10-u11-ga-x86-dvd.iso",
+      "output_directory": "packer-solaris10-vmware",
+      "shutdown_command": "pfexec /usr/sbin/init 5",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "tools_upload_flavor": "solaris",
+      "vm_name": "packer-solaris10",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "memsize": "4096",
+        "numvcpus": "2"
+      }
+    }
+    ]
+}
