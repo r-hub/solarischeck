@@ -1,6 +1,6 @@
 # Solaris VM for R
 
-![](packer/images/boot.png)
+![](images/boot.png)
 
 This repository contains tools to build your own Solaris virtual
 machine, specially tailored for R users. It uses [packer](packer.io)
@@ -98,7 +98,7 @@ to automate the Solaris installation.
     packages, or shut down the machine. Use `sudo -s` to start a root
     sub-shell.
 
-    ![](packer/images/login.png)
+    ![](images/login.png)
 
 ### R versions
 
@@ -122,7 +122,7 @@ versions:
     compatible with the previous two R builds, so if you use this,
     make sure you set up a separate package library for it.
 
-    ![](packer/images/desktop.png){width="1600"}
+    ![](images/desktop.png){width="1600"}
 
 ### Updating R
 
@@ -220,7 +220,7 @@ host OS, via ssh.
     manual, e.g. at
     <https://www.virtualbox.org/manual/ch06.html#natforward>.
 
-    ![](packer/images/vbnatpf.png)
+    ![](images/vbnatpf.png)
 
     E.g. with this setup, you would need to ssh to port 3022 on
     127.0.0.1:
