@@ -9,7 +9,10 @@ to automate the Solaris installation.
 ## Installation
 
 1.  Download packer from <https://www.packer.io/downloads/.> packer
-    supports Windows, macOS, Linux and other systems.
+    supports Windows, macOS, Linux and other systems. On macOS you can
+    install packer from brew:
+
+        brew install packer
 
 2.  You need to download a Solaris 10 ISO image. Download from Oracle
     require a free Oracle account. Go to
@@ -269,6 +272,8 @@ command from a terminal.
 -   For a fully manual installation, see this walk-through:
     <https://docs.r-hub.io/technical/solaris/>
 -   Prior art and inspriration: <https://github.com/jeroen/solarisvm>
+-   Our packer config is based on
+    <https://github.com/biemond/packer-vagrant-builder>.
 
 ## Feedback
 
