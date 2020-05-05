@@ -60,3 +60,6 @@ libzmq1_dev
 gfile
 pkgconfig
 fontconfig_dev
+libiconv_dev
+gcc5gfortran
+libreadline-dev
