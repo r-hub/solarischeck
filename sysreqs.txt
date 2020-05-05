@@ -59,3 +59,4 @@ libwebp_dev
 libzmq1_dev
 gfile
 pkgconfig
+fontconfig_dev
