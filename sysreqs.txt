@@ -58,3 +58,4 @@ libv8_dev
 libwebp_dev
 libzmq1_dev
 gfile
+pkgconfig
