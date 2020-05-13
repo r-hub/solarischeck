@@ -62,4 +62,5 @@ pkgconfig
 fontconfig_dev
 libiconv_dev
 gcc5gfortran
-libreadline-dev
+libreadline_dev
+libjpeg_dev
