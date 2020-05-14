@@ -64,3 +64,4 @@ libiconv_dev
 gcc5gfortran
 libreadline_dev
 libjpeg_dev
+which
