@@ -14,7 +14,6 @@ gmake
 gtar
 libatk_dev
 automake
-libcairo_dev
 cmake
 exiftool
 ffmpeg_dev
@@ -67,3 +66,5 @@ libjpeg_dev
 which
 aspell
 aspellen
+graphviz_dev
+sunx11devel
