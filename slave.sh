@@ -3,7 +3,7 @@
 set -euo pipefail
 
 main() {
-    declare filename="${1-}" pkgname="${2-}" rversion="${3-}"
+    declare filename="${1-}" pkgname="${2-}" rversion="${3-}" ods="${4-}"
 
     # Everything is relateive to user's HOME
     cd
@@ -37,7 +37,7 @@ main() {
     install_package_deps
 
     echo ">>>>>============== Running R CMD check"
-    run_check
+    run_check "${ods}"
     echo ">>>>>============== Done with R CMD check"
 
     echo "Cleaning up Xvfb"
@@ -78,7 +78,12 @@ cleanup_xvfb() {
 }
 
 run_check() {
-    R CMD check $checkArgs -l ~/R $filename
+    declare ods="${1-}"
+    R=""
+    if [[ -n "$ods" ]]; then R=$ODSR; fi
+    if [[ -z "$R" ]]; then R=R; fi
+    if [[ "$R" != "R" ]]; then echo Using R at "$R"; fi
+    $R CMD check $checkArgs -l ~/R $filename
 }
 
 [[ "$0" == "$BASH_SOURCE" ]] && ( main "$@" )

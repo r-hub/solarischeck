@@ -4,9 +4,18 @@ set -euo pipefail
 
 main() {
     declare package="${1-}" jobid="${2-}" url="${3-}" rversion="${4-}" \
-	    checkArgs="${5-}" envVars="${6-}"
+	    checkArgs="${5-}" envVars="${6-}" build="${7-}" pkgname="${8-}" \
+	    platformParams="${9-}"
 
+    username=""
     trap cleanup 0
+
+    # TODO: proper parser for parameters
+    if [[ "$platformParams" =~ "ods=true" ]]; then
+	local ods=true
+    else
+	local ods=""
+    fi
 
     local password=$(random_password)
     username=$(random_username)
@@ -28,7 +37,7 @@ main() {
 
     echo ">>>>>============== Running check"
     local pkgname=$(echo ${package} | cut -d"_" -f1)
-    run_check "${username}" "${package}" "${pkgname}" "${realrversion}"
+    run_check "${username}" "${package}" "${pkgname}" "${realrversion}" "${ods}"
 
     echo "Saving artifacts"
     save_artifacts "${jobid}" "${homedir}" "${pkgname}"
@@ -115,9 +124,9 @@ get_r_version() {
 }
 
 run_check() {
-  declare username="${1-}" filename="${2-}" pkgname="${3-}" rversion="${4-}"
+  declare username="${1-}" filename="${2-}" pkgname="${3-}" rversion="${4-}" ods="${5-}"
   su - "${username}" \
-    -c "~/slave.sh ${filename} ${pkgname} ${rversion}" || true
+    -c "~/slave.sh \"${filename}\" \"${pkgname}\" \"${rversion}\" \"${ods}\"" || true
 }
 
 save_artifacts() {
@@ -130,13 +139,13 @@ save_artifacts() {
 # Cleanup user, including home directory, arguments are global,
 # because we are calling this from trap
 cleanup() {
-  echo "Cleaning up user and home directory"
-  if [[ -z "$username" || -z "$homedir" ]]; then
-    echo "Cannot clean up, no username or homedir set"
-    return 1
-  fi
-  userdel -r ${username} || true
-  rm -rf "${homedir}" || true
+    echo "Cleaning up user and home directory"
+    if [[ -z "$username" || -z "$homedir" ]]; then
+	echo "Cannot clean up, no username or homedir set"
+	return 1
+    fi
+    userdel -r ${username} || true
+    rm -rf "${homedir}" || true
 }
 
 [[ "$0" == "$BASH_SOURCE" ]] && main "$@"
