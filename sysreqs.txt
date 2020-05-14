@@ -65,3 +65,5 @@ gcc5gfortran
 libreadline_dev
 libjpeg_dev
 which
+aspell
+aspellen
