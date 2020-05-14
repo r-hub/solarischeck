@@ -3,7 +3,7 @@
 ![](images/boot.png)
 
 This repository contains tools to build your own Solaris virtual
-machine, specially tailored for R users. It uses [packer](packer.io)
+machine, specially tailored for R users. It uses [packer](https://packer.io)
 to automate the Solaris installation.
 
 ## Installation
