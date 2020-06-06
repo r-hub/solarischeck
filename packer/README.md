@@ -194,7 +194,8 @@ versions:
                  texlive_latex_base \
                  texlive_latex_base_binaries \
                  texlive_latex_extra \
-                 texlive_latex_extra_binaries
+                 texlive_latex_extra_binaries \
+		 texlive-latex-recommended
 
 -   R-hub's OpenCSW catalog sometimes contains newer or patched
     versions of the official OpenCSW packages. This is usually

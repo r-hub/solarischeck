@@ -38,7 +38,8 @@ function install_tex() {
 	 texlive_latex_base \
 	 texlive_latex_base_binaries \
 	 texlive_latex_extra \
-	 texlive_latex_extra_binaries
+	 texlive_latex_extra_binaries \
+	 texlive_latex_recommended
 }
 
 function install_r_hub_client() {
