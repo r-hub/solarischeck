@@ -68,5 +68,3 @@ aspell
 aspellen
 graphviz_dev
 sunx11devel
-libharfbuzz_dev
-libfribidi_dev
