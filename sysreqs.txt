@@ -69,3 +69,5 @@ aspellen
 graphviz_dev
 sunx11devel
 qpdf
+libgit2
+libgit2_dev
