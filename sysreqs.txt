@@ -71,3 +71,6 @@ sunx11devel
 qpdf
 libgit2
 libgit2_dev
+libudunits 
+libudunits_data 
+libudunits_dev
