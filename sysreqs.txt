@@ -74,3 +74,4 @@ libgit2_dev
 libudunits 
 libudunits_data 
 libudunits_dev
+netcdf_dev
